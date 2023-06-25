@@ -33,17 +33,28 @@ public class StatsCalc {
         if ((n > 0) && (n <= 2)) {
             return true;
         }
-        return (boolean) (divisorsOf(n) == 1);
+        return (boolean) (divisorsOf(n) == 0);
     }
 
     public static int divisorsOf(int n) {
         int k = 0;
-        for (int i = 1; i <= n / 2; i++) {
+        for (int i = 2; i <= n / 2; i++) {
             if (n % i == 0) {
                 k++;
             }
         }
         return k;
+    }
+
+    public static List<Integer> allDivisorsOf(int n){
+        List<Integer> myList = new ArrayList<>();
+        int k = 0;
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                myList.add(i);
+            }
+        }
+        return myList;
     }
 
     public static void main(String[] args) {
@@ -97,7 +108,7 @@ public class StatsCalc {
         System.out.println(myList);
         System.out.println("6. Negative numbers: " + myList.stream().filter(p -> p<0).count() );
         if( myList.stream().filter(p -> p<0).count()>0 ) {        
-            System.out.println(myList.stream().filter(p -> p<0).toList());
+            //System.out.println(myList.stream().filter(p -> p<0).toList());
         }
     }
 }
